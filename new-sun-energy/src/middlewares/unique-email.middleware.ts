@@ -1,4 +1,3 @@
-// src/leads/middlewares/unique-email.middleware.ts
 import { Injectable, NestMiddleware, ConflictException } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { PrismaService } from '../database/prisma/prisma.service';
