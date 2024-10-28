@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # Banco de Dados MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: new_sun_database
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Backend NestJS
+  backend:
+    build:
+      context: ./new-sun-energy
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      DATABASE_URL: "mysql://root:123@mysql_db:3306/new_sun_database"
+      PORT: 3033
+    ports:
+      - "3033:3033"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app_network
+    command: npm run start:prod
+
+  # Serviço para rodar as migrações do Prisma
+  migrate:
+    build:
+      context: ./new-sun-energy
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: "mysql://root:123@mysql_db:3306/new_sun_database"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app_network
+    command: sh -c "sleep 10 && npx prisma migrate deploy"
+    restart: "no"
+
+  # Frontend React
+  frontend:
+    build:
+      context: ./newsun-energy-frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app_network
+    command: npm run start
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
