@@ -47,13 +47,7 @@ export class LeadsService {
             include: {
                 unidades: {
                     include: {
-                        historicoDeConsumoEmKWH: {
-                            where: {
-                                mesDoConsumo: {
-                                    gte: last12Months()
-                                }
-                            }
-                        }
+                        historicoDeConsumoEmKWH: last12Months('mesDoConsumo')
                     }
                 }
             },
@@ -68,13 +62,7 @@ export class LeadsService {
             include: {
                 unidades: {
                     include: {
-                        historicoDeConsumoEmKWH: {
-                            where: {
-                                mesDoConsumo: {
-                                    gte: last12Months()
-                                }
-                            }
-                        }
+                        historicoDeConsumoEmKWH: last12Months('mesDoConsumo')
                     }
                 }
             }
