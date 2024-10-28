@@ -70,4 +70,11 @@ export class LeadsService {
 
         return response
     }
+
+    async deleteLeadById(id: string) {
+        const response = this.prisma.lead.delete({
+            where: { id },
+        });
+        return response
+    }
 }

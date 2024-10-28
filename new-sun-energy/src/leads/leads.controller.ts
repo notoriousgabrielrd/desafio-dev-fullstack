@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Body, Param, Query } from '@nestjs/common';
 import { LeadsService } from './leads.service';
 import { CreateLeadDto } from './dto/create-lead.dto';
 
@@ -25,6 +25,13 @@ export class LeadsController {
   @Get(':id')
   getLeadById(@Param('id') id: string) {
     const response = this.leadsService.getLeadById(id);
+    return response;
+  }
+
+  @Delete(':id')
+  async deleteLeadById(@Param('id') id: string) {
+    const response = await this.leadsService.deleteLeadById(id);
+    console.log("response", response)
     return response;
   }
 }
