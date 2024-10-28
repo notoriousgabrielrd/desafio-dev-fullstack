@@ -33,6 +33,7 @@ Para o projeto escolhi o NestJS ao invés do express por se tratar de um framewo
 - [x] Middlewares de validação (email, codigoDaUnidadeConsumidora)
 - [x] HomePage de apresentação
 - [x] Tela para mostrar históricos das unidades consumidoras
+- [x] Toastify para notificar sucesso/falha das requisições
 - [ ] Autenticação e validação com JWT.
 - [ ] Rotas e telas para cadastro/login.
 - [ ] Pipeline CI/CD e deploy em Cloud.
