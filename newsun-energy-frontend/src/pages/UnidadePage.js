@@ -10,7 +10,6 @@ function UnidadePage() {
   const fetchLead = async () => {
     try {
       const response = await axios.get(`http://localhost:3033/leads/${leadId}`);
-      console.log("response", response)
       const unidadeData = response.data.unidades.find(u => u.id === unidadeId);
       setUnidade(unidadeData);
     } catch (error) {

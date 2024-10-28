@@ -31,7 +31,6 @@ export class LeadsController {
   @Delete(':id')
   async deleteLeadById(@Param('id') id: string) {
     const response = await this.leadsService.deleteLeadById(id);
-    console.log("response", response)
     return response;
   }
 }

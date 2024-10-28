@@ -1,5 +1,4 @@
-// src/leads/dto/create-lead.dto.ts
-import { IsString, IsEmail, IsArray, ValidateNested, MinLength, ArrayMinSize } from 'class-validator';
+import { IsString, IsEmail, IsArray, ValidateNested, ArrayMinSize } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class HistoricoDeConsumoDto {
@@ -37,7 +36,7 @@ export class CreateLeadDto {
 
   @IsArray()
   @ValidateNested({ each: true })
-  @ArrayMinSize(1, { message: 'Um lead deve ter no mínimo uma unidade' })
+  @ArrayMinSize(1, { message: "Um lead deve ter no mínimo uma unidade" })
   @Type(() => UnidadeDto)
   unidades: UnidadeDto[];
 }

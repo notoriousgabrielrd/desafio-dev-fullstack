@@ -26,7 +26,6 @@ function SimularPage() {
       });
 
       const magicPdfData = response.data;
-      console.log('Decodificação concluída:', magicPdfData);
       setDecodedData(magicPdfData);
 
       const historicoDeConsumoEmKWH = magicPdfData.invoice.map(item => ({
@@ -49,11 +48,9 @@ function SimularPage() {
         telefone,
         unidades
       };
-      console.log("payload", payload)
       const localResponse = await axios.post('http://localhost:3033/leads', payload, {
         headers: { 'Content-Type': 'application/json' },
       });
-      console.log('Simulação criada no backend local:', localResponse);
 
     } catch (error) {
       console.error('Erro ao processar o arquivo ou enviar a simulação:', error.message);
