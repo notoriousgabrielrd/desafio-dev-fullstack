@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Box, Input, Button, IconButton } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { DeleteIcon } from '@chakra-ui/icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import api from '../api';
 
 function ListagemPage() {
@@ -14,6 +16,7 @@ function ListagemPage() {
       const response = await api.get('http://localhost:3033/leads', { params: filters });
       setLeads(response.data);
     } catch (error) {
+      toast.error('Erro ao buscar simulações.');
       console.error('Erro ao buscar simulações:', error);
     }
   };
@@ -30,7 +33,9 @@ function ListagemPage() {
     try {
       await api.delete(`http://localhost:3033/leads/${leadId}`);
       fetchLeads();
+      toast.success('Lead deletado com sucesso!');
     } catch (error) {
+      toast.error('Erro ao deletar o lead.');
       console.error('Erro ao deletar o lead:', error);
     }
   };
@@ -103,6 +108,8 @@ function ListagemPage() {
           )}
         </Box>
       </Box>
+
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </Box>
   );
 }

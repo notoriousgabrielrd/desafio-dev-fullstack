@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Button, Input, Text, VStack } from '@chakra-ui/react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SimularPage() {
   const [nomeCompleto, setNomeCompleto] = useState('');
@@ -13,7 +15,7 @@ function SimularPage() {
     e.preventDefault();
 
     if (!file) {
-      console.error("Por favor, selecione um arquivo.");
+      toast.error("Por favor, selecione um arquivo.");
       return;
     }
 
@@ -21,6 +23,8 @@ function SimularPage() {
     fileData.append('file', file);
 
     try {
+      toast.info("Processando arquivo...");
+
       const response = await axios.post('https://magic-pdf.solarium.newsun.energy/v1/magic-pdf', fileData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -48,12 +52,18 @@ function SimularPage() {
         telefone,
         unidades
       };
-      const localResponse = await axios.post('http://localhost:3033/leads', payload, {
+
+      toast.info("Enviando simulação...");
+
+      await axios.post('http://localhost:3033/leads', payload, {
         headers: { 'Content-Type': 'application/json' },
       });
 
+      toast.success("Simulação enviada com sucesso!");
+
     } catch (error) {
-      console.error('Erro ao processar o arquivo ou enviar a simulação:', error.message);
+      console.log("error:", error.response.data.message)
+      toast.error('Erro ao processar o arquivo ou enviar a simulação: ' + error.response.data.message);
     }
   };
 
@@ -87,6 +97,8 @@ function SimularPage() {
           <pre>{JSON.stringify(decodedData, null, 2)}</pre>
         </Box>
       )}
+
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </Box>
   );
 }
