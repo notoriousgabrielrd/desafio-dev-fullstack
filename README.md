@@ -1,91 +1,143 @@
-# Desafio Técnico - Fullstack com NestJS e React
+# NewSun Energy Brazil
+## Processo de recrutamento
 
-Este repositório contém a solução para o teste técnico utilizando **NestJS** para o backend e **React** para o frontend. Abaixo você encontra instruções para configurar, rodar e explorar o projeto.
+Olá dev, bem vindo ao nosso processo de recrutamento para desenvolvedor Full Stack!
 
-## Tecnologias Utilizadas
+### Sobre a vaga
+* 100% Remoto
+* Flexibilidade no horário de trabalho
 
-- **NestJS**: Framework Node.js para a construção do backend, escolhido por sua abordagem opinativa e robusta na criação de rotas e controllers.
-- **MySQL**: Banco de dados relacional, conforme solicitado.
-- **Prisma ORM**: Ferramenta de ORM com integração facilitada com TypeScript, queries tipadas e Prisma Studio para gerenciamento de dados.
-- **ReactJS**: Framework utilizado para o frontend, acompanhado da biblioteca **Chakra UI** para estilização e componentes prontos.
+### Requisitos para a vaga
+Conhecimentos sólidos em:
 
-## Funcionalidades Desenvolvidas
+* Typescript (com nodejs)
+* ReactJS/NextJS
+* Estilização com tailwindCSS ou @chakra-ui
+* MySQL (utilizando algum ORM: prisma, typeORM, etc...)
+* Consumir e Servir aplicações RESTful
 
-Para o projeto escolhi o NestJS ao invés do express por se tratar de um framework mais opinativo que me proporciona ferramentas poderosas para aumentar minha eficiência no desenvolvimento, como:
+Desejável:
+* NestJS
+* Docker
+* Noções de Clean Architeture 
 
-- Módulos de gerenciamento de leads (`leads module`), incluindo controllers e serviços gerados com NestJS:
-  - `npx nest generate module leads`
-  - `npx nest generate service leads`
-  - `npx nest generate controller leads`
-
-**Funcionalidades pedidas no desafio:**:
-- [x] Página para submissão do formulário /simular
-- [x] Página de consulta /listagem
-- [x] Endpoint para registrar uma nova simulação
-- [x] Endpoint para listar todas as simulações (com opção de filtro por nome, email, codigo da unidade consumidora etc)
-- [x] Endpoint para listar uma simulação baseado no id do lead, etc...
-- [x] Modelar domínio com os agregados a seguir:
-- [x] Fazer validação dos dados transitados na API.
-- [x] Configurar ambiente docker para rodar a aplicação.
-
-**Funcionalidades extras não pedidas no desafio**:
-- [x] Rota para deletar leads
-- [x] Middlewares de validação (email, codigoDaUnidadeConsumidora)
-- [x] HomePage de apresentação
-- [x] Tela para mostrar históricos das unidades consumidoras
-- [x] Toastify para notificar sucesso/falha das requisições
-- [ ] Autenticação e validação com JWT.
-- [ ] Rotas e telas para cadastro/login.
-- [ ] Pipeline CI/CD e deploy em Cloud.
-
-## Como Rodar o Projeto
-
-Siga as instruções abaixo para configurar e rodar o projeto localmente.
-
-### Pré-requisitos
-
-Certifique-se de ter o **Docker** e o **Docker Compose** instalados na máquina, além de **Node.js** e **npm**.
-
-### Passo a Passo
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/notoriousgabrielrd/desafio-dev-fullstack
-
-2. Acesse a pasta raiz do projeto:
-   ```bash
-    cd desafio-dev-fullstack
-
-3. Inicialize o backend:
-   ```bash
-    cd new-sun-energy
-    cp .env.example .env
-    npm install
-
-4. Inicialize o frontend:
-   ```bash
-    cd ../newsun-energy-frontend
-    cp .env.example .env
-    npm install
-
-5. Suba o ambiente completo com Docker:
-   ```bash
-    cd ..
-    docker-compose up --build
+# Resumo
+### Duas telas no frontend, uma com o formulário, outra com a listagem das simulações registradas (filtros, etc).
+### No backend, 3 endpoints: registrar uma nova simulação, consumir em lista, consumir por id.
 
 
-### Estrutura de pastas:
-- /new-sun-energy: Backend desenvolvido com NestJS.
-- /newsun-energy-frontend: Frontend desenvolvido com React e Chakra UI.
-- /prisma: Configuração do Prisma ORM.
+# O Desafio:
+Utilizando o seu smartphone ou desktop, João deve ser capaz de realizar uma simulação para um plano de compensação energética. <br/>
+O processo é simples, João submete um formulário contendo o seu nome, email e telefone, junto a **uma ou mais** contas de energia (que será decodificada por nossa API interna).<br/><br/>
+Uma vez submetido o formulário, o backend tem que ser capaz de criar um novo ```lead``` contendo as informações cadastrais do author, juntamente aos dados decodificados da conta de energia.
+#
+# Link para contas de energia [aqui](https://github.com/newsunenergy/desafio-dev-fullstack-12-2023/tree/main/contas-de-energia)
 
-### Links Úteis:
-- [Documentação do NestJS](https://docs.nestjs.com "Ir para a documentação oficial do NestJS")
-- [Documentação do Prisma](https://www.prisma.io/docs "Ir para a documentação oficial do Prisma")
-- [Documentação do React](https://reactjs.org "Ir para a documentação oficial do React")
-- [Documentação do Chakra UI](https://chakra-ui.com "Ir para a documentação oficial do Chakra UI")
+> [!TIP]
+> A escolha de tecnologia é livre. O único requisito é que seja feito em Typescript e que o frontend seja feito em ReactJS ou NextJS. Pode adicionar frameworks ou bibliotecas da sua escolha!<br/>
+
+>[!NOTE]
+>Endpoint utilizado para decodificação da conta de energia. <br/>
+>Sem autenticação, apenas realizar um POST com `multipart/form-data`<br/> o body deve ter o campo `"file"` contendo a conta de energia <br/>
+>POST https://magic-pdf.solarium.newsun.energy/v1/magic-pdf <br/><br/>
+>Content-Type: multipart/form-data <br />
+![image](https://github.com/newsunenergy/desafio-dev-fullstack-12-2023/assets/30875229/c2d784b6-d4f3-4009-b9c1-cbea7feac17d)
 
 
-#### Considerações
+>[!CAUTION]
+> Não há necessidade de salvar o arquivo da conta de energia. Não será utilizado como critério de avaliação
 
-Espero que aprecie o desenvolvimento deste projeto. O desafio foi bastante interessante, especialmente porque, embora eu tenha menos familiaridade com o NestJS em comparação ao Express, achei estimulante utilizá-lo para explorar novas abordagens e soluções.
+# Link para contas de energia [aqui](https://github.com/newsunenergy/desafio-dev-fullstack-12-2023/tree/main/contas-de-energia)
+
+### Frontend
+- [ ] Página para submissão do formulário ```/simular```
+- [ ] Página de consulta ```/listagem```
+
+### Backend
+- [ ] Endpoint para registrar uma nova simulação
+- [ ] Endpoint para listar todas as simulações (com opção de filtro por nome, email, codigo da unidade consumidora etc)
+- [ ] Endpoint para listar uma simulação baseado no id do lead, etc...
+- [ ] Modelar domínio com os agregados a seguir:
+
+### Diferencial
+- [ ] Fazer validação dos dados transitados na API.
+- [ ] Configurar ambiente docker para rodar a aplicação.
+
+
+      
+```ts
+export interface Lead {
+  id: string
+  nomeCompleto: string
+  email: string 
+  telefone: string
+  unidades: Unidade[]
+}
+
+export interface Unidade {
+  id: string
+  codigoDaUnidadeConsumidora: string
+  modeloFasico: 'monofasico' | 'bifasico' | 'trifasico'
+  enquadramento: 'AX' | 'B1' | 'B2' | 'B3'
+  historicoDeConsumoEmKWH: Consumo[]
+}
+
+export interface Consumo {
+  consumoForaPontaEmKWH: number
+  mesDoConsumo: Date
+}
+
+```
+>[!NOTE]
+> DICA<br/>
+> ![image](https://github.com/newsunenergy/desafio-dev-fullstack-12-2023/assets/30875229/1601b2e4-f1b9-4b40-a2ae-020e342c7796)<br/>
+> `unit_key` representa `codigoDaUnidadeConsumidora` no nosso domínio<br/>
+> `chargingModel` representa `unit.enquadramento` no nosso domínio<br/>
+> `phaseModel` representa  `unit.modeloFasico` no nosso domínio<br/>
+> `consumo_fp` representa `unit.historicoDeConsumoEmKWH.consumoForaPontaEmKWH`<br/>
+> `consumo_date` representa `mesDoConsumo` <br/><br/>
+
+#
+
+# Regras
+* O email deverá ser único por `lead`
+* O codigoDaUnidadeConsumidora deve ser único.
+* Um lead deve ter no mínimo 1 `unidade`.
+* Uma `unidade` deve ter exatamente o `historicoDeConsumoEmKWH` do `Consumo` dos últimos 12 meses. Em outras palavras, `${unit.historicoDeConsumoEmKWH}` length tem que ser 12.
+
+```ts
+export interface SolicitarSimulacaoDeCompensacaoEnergeticaInput {
+  nomeCompleto: string
+  email: string
+  telefone: string
+  informacoesDaFatura: InformacaoDaFatura[]
+}
+
+export interface InformacaoDaFatura {
+    codigoDaUnidadeConsumidora: string
+    modeloFasico: string
+    enquadramento: string
+    mesDeReferencia: Date
+    consumoEmReais: number
+    historicoDeConsumoEmKWH: {
+      consumoForaPontaEmKWH: number
+      mesDoConsumo: Date
+    }[]
+}
+```
+
+# Resumo
+### Duas telas no frontend, uma com o formulário, outra com a listagem das simulações registradas (filtros, etc).
+### No backend, 3 endpoints: registrar uma nova simulação, consumir em lista, consumir por id.
+
+#
+
+# Comece
+O processo do desafio deve ser: <br />
+
++ Faça o fork do desafio.
++ Crie um PROJECT.md com a explicação de como devemos executar o projeto e com o máximo de detalhes possível do que foi feito.
++ Após concluir faça um pull request
+
+Qualquer dúvida entre em contato por email.
+paulo.santana@newsun.energy
