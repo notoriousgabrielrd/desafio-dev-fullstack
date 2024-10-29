@@ -7,7 +7,12 @@ Este repositório contém a solução para o teste técnico utilizando **NestJS*
 - **NestJS**: Framework Node.js para a construção do backend, escolhido por sua abordagem opinativa e robusta na criação de rotas e controllers.
 - **MySQL**: Banco de dados relacional, conforme solicitado.
 - **Prisma ORM**: Ferramenta de ORM com integração facilitada com TypeScript, queries tipadas e Prisma Studio para gerenciamento de dados.
+- **Class Transformer e Class Validator**: Utilizadas no NestJS para validação de dados e manipulação de objetos, proporcionando um controle refinado sobre os dados recebidos e enviados pela API.
 - **ReactJS**: Framework utilizado para o frontend, acompanhado da biblioteca **Chakra UI** para estilização e componentes prontos.
+- **Axios**: Biblioteca para realizar requisições HTTP no frontend, simplificando a comunicação com a API.
+- **Zod**: Biblioteca de validação de dados, usada para estruturar e validar esquemas de dados de forma consistente.
+- **React Router Dom**: Biblioteca de roteamento para React, facilitando a navegação entre as páginas da aplicação.
+- **React Toastify**: Ferramenta para exibir notificações de forma elegante e personalizada no frontend.
 
 ## Funcionalidades Desenvolvidas
 
