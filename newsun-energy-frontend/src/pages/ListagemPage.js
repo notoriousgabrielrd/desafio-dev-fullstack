@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import api from '../api';
+import api from '../api/api';
 
 function ListagemPage() {
   const [leads, setLeads] = useState([]);
@@ -13,7 +13,7 @@ function ListagemPage() {
 
   const fetchLeads = async () => {
     try {
-      const response = await api.get('http://localhost:3033/leads', { params: filters });
+      const response = await api.get('/leads', { params: filters });
       setLeads(response.data);
     } catch (error) {
       toast.error('Erro ao buscar simulações.');
@@ -31,7 +31,7 @@ function ListagemPage() {
 
   const deleteLead = async (leadId) => {
     try {
-      await api.delete(`http://localhost:3033/leads/${leadId}`);
+      await api.delete(`/leads/${leadId}`);
       fetchLeads();
       toast.success('Lead deletado com sucesso!');
     } catch (error) {

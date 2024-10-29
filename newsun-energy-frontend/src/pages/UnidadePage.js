@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Text, VStack } from '@chakra-ui/react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import api from '../api/api';
 
 function UnidadePage() {
   const { leadId, unidadeId } = useParams();
@@ -9,10 +11,11 @@ function UnidadePage() {
 
   const fetchLead = async () => {
     try {
-      const response = await axios.get(`http://localhost:3033/leads/${leadId}`);
+      const response = await api.get(`/leads/${leadId}`);
       const unidadeData = response.data.unidades.find(u => u.id === unidadeId);
       setUnidade(unidadeData);
     } catch (error) {
+      toast.error('Erro ao buscar detalhes da unidade.');
       console.error('Erro ao buscar detalhes da unidade:', error);
     }
   };
@@ -38,6 +41,8 @@ function UnidadePage() {
           </Box>
         ))}
       </VStack>
+
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </Box>
   );
 }
