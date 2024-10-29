@@ -33,7 +33,8 @@ Para o projeto escolhi o NestJS ao invés do express por se tratar de um framewo
 - [x] Middlewares de validação (email, codigoDaUnidadeConsumidora)
 - [x] HomePage de apresentação
 - [x] Tela para mostrar históricos das unidades consumidoras
-- [ ] Toastify para notificar erros e sucessos
+- [x] Toastify para notificar erros e sucessos
+- [x] Validação dos campos do formulário
 - [ ] Autenticação e validação com JWT.
 - [ ] Rotas e telas para cadastro/login.
 - [ ] Pipeline CI/CD e deploy em Cloud.
@@ -73,7 +74,20 @@ Certifique-se de ter o **Docker** e o **Docker Compose** instalados na máquina,
     cd ..
     docker-compose up --build
 
-
+6. <u>Caso queira rodar separadamente o backend</u>:
+   ```bash
+    cd new-sun-energy
+    cp .env.example .env
+    npm install
+    npm run start
+   
+ 7. <u>Caso queira rodar separadamente o frontend</u>:
+    ```bash
+    cd ../newsun-energy-frontend
+    cp .env.example .env
+    npm install
+    npm run start
+   
 ### Estrutura de pastas:
 - /new-sun-energy: Backend desenvolvido com NestJS.
 - /newsun-energy-frontend: Frontend desenvolvido com React e Chakra UI.
@@ -89,3 +103,5 @@ Certifique-se de ter o **Docker** e o **Docker Compose** instalados na máquina,
 #### Considerações
 
 Espero que aprecie o desenvolvimento deste projeto. O desafio foi bastante interessante, especialmente porque, embora eu tenha menos familiaridade com o NestJS em comparação ao Express, achei estimulante utilizá-lo para explorar novas abordagens e soluções.
+
+
